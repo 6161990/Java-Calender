@@ -35,15 +35,31 @@ public class Calender {
 		*/
 		
 		//방법 2 (메소드를 만들고 난 후)
-		System.out.println("달을 입력하세요.");
+		/*System.out.println("달을 입력하세요.");
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
 		int month = scanner.nextInt();
 		
 		System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
 		
-		cal.printSampleCalender();
-		scanner.close();
+		cal.printSampleCalender();*/
+		
+		
+		//반복해서 입력받기
+		Scanner scanner = new Scanner(System.in);
+		Calender cal = new Calender();
+
+		System.out.println("반복횟수를 입력하세요.");
+		int repeat = scanner.nextInt();
+		
+		for(int i=0; i<repeat; i++) {
+			System.out.println("달을 입력하세요.");
+			int month = scanner.nextInt();
+			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
+		}
+		
+		System.out.println("Bye~");
+
 	}
 
 }

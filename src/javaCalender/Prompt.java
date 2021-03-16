@@ -4,16 +4,22 @@ import java.util.Scanner;
 
 public class Prompt {
 
-	private final static String PROMPT ="cal>";
+	private final static String YEAR ="year>";
+	private final static String MONTH ="month>";
 	
 	public void runPrompt() {
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
 		
+		int month = -1;
+		int year = -1;
 		while(true) {
+			System.out.println("년도를 입력하세요.");
+			System.out.println(YEAR);
+			year = scanner.nextInt();
 			System.out.println("달을 입력하세요.");
-			System.out.println(PROMPT);
-			int month = scanner.nextInt();
+			System.out.println(MONTH);
+			month = scanner.nextInt();
 			if(month == -1) {
 				break;
 			}
@@ -21,7 +27,7 @@ public class Prompt {
 				System.out.println("달은 12월까지 존재합니다.");
 				continue;
 			}
-			cal.printCalender(2021, month);
+			cal.printCalender(year, month);
 		}
 		
 		System.out.println("Bye~");
@@ -50,6 +56,7 @@ public class Prompt {
 	
 		System.out.printf("%d월은 %d일까지 있습니다.\n", month, maxDays[month -1]);
 		*/
+		
 		
 		//방법 2 (메소드를 만들고 난 후)
 		/*System.out.println("달을 입력하세요.");

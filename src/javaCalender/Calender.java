@@ -38,9 +38,9 @@ public class Calender {
 		}
 		System.out.println();
 
+		//print from second line to last
 		int delim = (count <7)? count : 0;
 		count++;
-		//print from second line to last
 		
 		for(int i = count; i<=maxDay; i++) {
 			System.out.printf("%3d", i); //%3d = 해당 자리에 들어올 int가 총 세 자리를 차지함.

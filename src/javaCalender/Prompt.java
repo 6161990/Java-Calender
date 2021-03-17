@@ -32,6 +32,7 @@ public class Prompt {
 			year = scanner.nextInt();
 			if(year == -1)
 				break;
+			
 			System.out.println("달을 입력하세요.");
 			System.out.println(MONTH);
 			month = scanner.nextInt();

@@ -2,8 +2,8 @@ package javaCalender;
 
 public class Calender {
 	
-	private static int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	private static int[] LEAP_MAX_DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	public boolean isLeapYear(int year) {
 		if(year % 4 == 0 && (year % 100 !=0 || year % 400 == 0)){
@@ -56,6 +56,7 @@ public class Calender {
 	}
 	private int getWeekday(int year, int month, int day) {
 		//기준날짜의 요일을 알아낸다 1970년 1월 1일은 목요일
+		
 		int syear = 1970;
 		final int STANDARD_WEEKDAY = 3;
 		
@@ -69,6 +70,7 @@ public class Calender {
 			int delta = getMaxDaysOfMonth(year, i);
 			count += delta;
 		}
+		
 		count += day;
 		
 		int weekday = (count + STANDARD_WEEKDAY) % 7;
@@ -77,11 +79,11 @@ public class Calender {
 	//simple test code here
 		public static void main(String[] args) {
 			Calender cal = new Calender();
-			System.out.println(cal.getWeekday(1970, 1, 1) == 3);
-			System.out.println(cal.getWeekday(1971, 1, 1) == 4);
-			System.out.println(cal.getWeekday(1972, 1, 1) == 5);
-			System.out.println(cal.getWeekday(1973, 1, 1) == 0);
-			System.out.println(cal.getWeekday(1974, 1, 1) == 1);
+			System.out.println(cal.getWeekday(1970, 1, 1));
+			System.out.println(cal.getWeekday(1971, 1, 1));
+			System.out.println(cal.getWeekday(1972, 1, 1));
+			System.out.println(cal.getWeekday(1973, 1, 1));
+			System.out.println(cal.getWeekday(1974, 1, 1));
 
 		}
 	

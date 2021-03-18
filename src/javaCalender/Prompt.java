@@ -22,8 +22,8 @@ public class Prompt {
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
 		
-		int month = -1;
-		int year = -1;
+		int month = 1;
+		int year = 2017;
 		
 		
 		while(true) {

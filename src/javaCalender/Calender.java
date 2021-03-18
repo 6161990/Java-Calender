@@ -62,14 +62,14 @@ public class Calender {
 		int count = 0;
 		
 		for(int i = syear; i < year; i++) {
-			int delta = isLeapYear(i) ? 366: 365;
+			int delta = isLeapYear(i) ? 366 : 365;
 			count += delta;
 		}
 		for(int i = 1; i < month; i++) {
 			int delta = getMaxDaysOfMonth(year, i);
-			count +=delta;
+			count += delta;
 		}
-		count += day; //1월 1일 더할 필요없음
+		count += day;
 		
 		int weekday = (count + STANDARD_WEEKDAY) % 7;
 		return weekday;

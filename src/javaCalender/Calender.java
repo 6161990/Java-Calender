@@ -54,29 +54,29 @@ public class Calender {
 		System.out.println();
 	
 	}
+	
 	private int getWeekday(int year, int month, int day) {
-		//기준날짜의 요일을 알아낸다 1970년 1월 1일은 목요일
-		
 		int syear = 1970;
-		final int STANDARD_WEEKDAY = 3;
+		final int STANDARD_WEEKDAY = 4;
 		
 		int count = 0;
 		
-		for(int i = syear; i < year; i++) {
-			int delta = isLeapYear(i) ? 366 : 365;
-			count += delta;
-		}
-		for(int i = 1; i < month; i++) {
-			int delta = getMaxDaysOfMonth(year, i);
+		for (int i= syear; i<year; i++) {
+			int delta = isLeapYear(i)? 366: 365;
 			count += delta;
 		}
 		
-		count += day;
+		for(int i=1; i<month; i++) {
+			int delta = getMaxDaysOfMonth(year,1);
+			count += delta;
+		}
+		
+		count += day -1;
 		
 		int weekday = (count + STANDARD_WEEKDAY) % 7;
 		return weekday;
 	}
-	//simple test code here
+		//simple test code here
 		public static void main(String[] args) {
 			Calender cal = new Calender();
 			System.out.println(cal.getWeekday(1970, 1, 1));

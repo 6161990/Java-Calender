@@ -13,15 +13,31 @@ public class Prompt {
 		System.out.println("| h. 도움말 q. 종료");
 		System.out.println("+---------------------+");
 	}
-	public int parseDay(String str_weekday) {
-		if( str_weekday.equals("일")) return 0;
-		else if( str_weekday.equals("월")) return 1;
-		else if( str_weekday.equals("화")) return 2;
-		else if( str_weekday.equals("수")) return 3;
-		else if( str_weekday.equals("목")) return 4;
-		else if( str_weekday.equals("금")) return 5;
-		else if( str_weekday.equals("토")) return 6;
-		else return 0;
+	/**
+	 * 
+	 * @param week
+	 *            요일명
+	 * @return 0 ~ 6 (0 = Sunday, 6 = Saturday)
+	 */
+	public int parseDay(String week) {
+		switch(week) {
+		case "su":
+			return 0;
+		case "mo":
+			return 1;
+		case "tu":
+			return 2;
+		case "we":
+			return 3;
+		case "th":
+			return 4;
+		case "fr":
+			return 5;
+		case "sa":
+			return 6;
+		default:
+			return 0;		
+		}
 	}
 
 	private final static String YEAR ="year>";
@@ -33,16 +49,27 @@ public class Prompt {
 		Calender cal = new Calender();
 	
 		
-		while(true) {
-			System.out.println("메뉴를 선택하세요");
+		boolean isLoop = true; //while을 빠져나오기 위한 문 
+		while (isLoop) {
+			System.out.println("명령하세요! [1, 2, 3, h, q]");
 			String cmd = scanner.next();
-			if(cmd.equals("1"))
+			switch(cmd) {
+			case "1":
 				cmdRegister(scanner, cal);
-			else if(cmd.equals("2")) cmdSearch(scanner, cal);
-			else if(cmd.equals("3")) cmdCal(scanner, cal);
-			else if(cmd.equals("h")) printMenu();
-			else if(cmd.equals("q")) break;
-			
+				break;
+			case "2":
+				cmdSearch(scanner, cal);
+				break;
+			case "3":
+				cmdCal(scanner, cal);
+				break;
+			case "h":
+				printMenu();
+				break;
+			case "q":
+				isLoop = false;  
+				break;		
+			}
 		}
 		
 		System.out.println("Good Bye!");
@@ -89,9 +116,9 @@ public class Prompt {
 	private void cmdRegister(Scanner s, Calender c) throws ParseException {
 		System.out.println("[새 일정 등록]");
 		System.out.println("날짜를 입력해주세요(yyyy-mm-dd)");
-		String date = s.next();
+		String date = s.next(); // 입력 후 enter키를 치면, 처음 next"메뉴를 선택해주세요" 계속 출력됨.
 		String text = "";
-	    s.nextLine(); //ignore one newline
+	    s.nextLine(); //ignore one newline.  why? nextLine이 enter키에 반응하는 애라서 .nextLine하나 더 써주면 해결. 
 	    System.out.println("일정을 입력해 주세요.");
 	    text = s.nextLine();
 		

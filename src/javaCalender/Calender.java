@@ -15,7 +15,7 @@ public class Calender {
 		planMap = new HashMap<Date, String>();
 	}	
 	public void registerPlan(String strDate, String plan) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate); //strDate 안에 있는 숫자를 parse로 구분가게 만들어줌.
 		//System.out.println(date);
 		planMap.put(date, plan);
 	}

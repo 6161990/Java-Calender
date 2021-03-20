@@ -1,7 +1,6 @@
 package javaCalender;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -9,20 +8,21 @@ public class Calender {
 	
 	private static int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	private static int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	private HashMap <Date, String> planMap;
+	
+	private HashMap <Date, PlanItem> planMap;
 	
 	public Calender() {
-		planMap = new HashMap<Date, String>();
+		planMap = new HashMap<Date, PlanItem>();
 	}	
-	public void registerPlan(String strDate, String plan) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate); //strDate 안에 있는 숫자를 parse로 구분가게 만들어줌.
+	public void registerPlan(String strDate, String plan)  {
+		PlanItem p = new PlanItem(strDate, plan);
 		//System.out.println(date);
-		planMap.put(date, plan);
+		planMap.put(p.getDate(), p);
 	}
-	public String searchPlan(String strDate) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-		String plan = planMap.get(date);
-		return plan;
+	public PlanItem searchPlan(String strDate) {
+		Date date = PlanItem.getDatefromString(strDate);
+		return planMap.get(date);
+		
 	}
 	
 	public boolean isLeapYear(int year) {
@@ -47,7 +47,7 @@ public class Calender {
 		int weekday = getWeekday(year, month, 1);
 		
 		//print blank space
-		for(int i=0; i<weekday; i++) {
+		for(int i=0; i < weekday; i++) {
 			System.out.print("   ");
 		}
 		
@@ -81,12 +81,12 @@ public class Calender {
 		
 		int count = 0;
 		
-		for (int i= syear; i<year; i++) {
+		for (int i= syear; i < year; i++) {
 			int delta = isLeapYear(i)? 366: 365;
 			count += delta;
 		}
 		
-		for(int i=1; i<month; i++) {
+		for(int i = 1; i < month; i++) {
 			int delta = getMaxDaysOfMonth(year,i);
 			count += delta;
 		}
@@ -105,9 +105,7 @@ public class Calender {
 			System.out.println(cal.getWeekday(1973, 1, 1));
 			System.out.println(cal.getWeekday(1974, 1, 1));
 
-			cal.registerPlan("2017-06-23", "go to school with mom");
-			System.out.println(cal.searchPlan("2017-06-23").equals("go to school with mom"));
-
+			
 		}
 	
 }

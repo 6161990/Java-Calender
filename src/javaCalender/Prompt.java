@@ -45,6 +45,7 @@ public class Prompt {
 	
 	public void runPrompt() throws ParseException {
 		printMenu();
+		
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
 	
@@ -100,15 +101,13 @@ public class Prompt {
 		System.out.println("[일정 검색]");
 		System.out.println("날짜를 입력해 주세요 (yyyy-MM-dd)");
 		String date = s.next();
-		String plan ="" ;
-		try {
-			plan = c.searchPlan(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			System.out.println("일정 검색 중 오류가 발생했습니다.");
+		PlanItem plan;
+		plan = c.searchPlan(date);
+		if (plan != null) {
+			System.out.println(plan.detail);
+		} else {
+			System.out.println("일정이 없습니다.");
 		}
-		System.out.println(plan);
-		
 	}
 
 
@@ -118,11 +117,14 @@ public class Prompt {
 		System.out.println("날짜를 입력해주세요(yyyy-mm-dd)");
 		String date = s.next(); // 입력 후 enter키를 치면, 처음 next"메뉴를 선택해주세요" 계속 출력됨.
 		String text = "";
-	    s.nextLine(); //ignore one newline.  why? nextLine이 enter키에 반응하는 애라서 .nextLine하나 더 써주면 해결. 
-	    System.out.println("일정을 입력해 주세요.");
-	    text = s.nextLine();
-		
-		c.registerPlan(date, text);		
+	    System.out.println("일정을 입력해 주세요.(끝문자 = ;)");
+	    String word;
+		while(!(word = s.next()).endsWith(";")) {
+			text += word +" ";
+		}
+		word = word.replace(";", "");
+		text += word;
+		c.registerPlan(date, text);
 	}
 	public static void main(String[] args) throws ParseException {
 		Prompt p = new Prompt();

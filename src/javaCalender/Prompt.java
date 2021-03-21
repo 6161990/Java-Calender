@@ -114,7 +114,7 @@ public class Prompt {
 
 	private void cmdRegister(Scanner s, Calender c) throws ParseException {
 		System.out.println("[새 일정 등록]");
-		System.out.println("날짜를 입력해주세요(yyyy-mm-dd)");
+		System.out.println("날짜를 입력해주세요(yyyy-MM-dd)");
 		String date = s.next(); // 입력 후 enter키를 치면, 처음 next"메뉴를 선택해주세요" 계속 출력됨.
 		String text = "";
 	    System.out.println("일정을 입력해 주세요.(끝문자 = ;)");
@@ -122,7 +122,7 @@ public class Prompt {
 		while(!(word = s.next()).endsWith(";")) {
 			text += word +" ";
 		}
-		word = word.replace(";", "");
+		word = word.replace(";", ""); //String replace(CharSequence target, CharSequence replacement)
 		text += word;
 		c.registerPlan(date, text);
 	}
